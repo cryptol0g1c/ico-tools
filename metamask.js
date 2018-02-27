@@ -49,8 +49,10 @@ let getNetworkId = function(cb){
  */
 let createTransaction = function(_from, _to, _amount, _gas, _data, cb) {
 
-  if(_from === undefined || _to === undefined)
+  if(_to === undefined)
     cb("Missing Parameters");
+  else if(_from === undefined)
+    _from = web3.eth.accounts[0];
 
   web3.eth.sendTransaction({
     from: _from,
